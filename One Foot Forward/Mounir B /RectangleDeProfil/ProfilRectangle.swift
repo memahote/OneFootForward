@@ -32,7 +32,7 @@ struct ProfilRectangle: View {
                     Spacer()
                     Image(.time)
                     Text("1H")
-                    Spacer().frame(width: )
+//                    Spacer().frame(width: )
                 }
                 HStack {
                     Image(.location)
