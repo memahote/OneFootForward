@@ -14,6 +14,7 @@ struct ContentView: View {
         TabView {
             
             Tab("Profil", image: "Profil"){
+                Missions()
             }
             Tab("Missions", image: "Booking"){
             }
