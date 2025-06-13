@@ -8,14 +8,21 @@
 import SwiftUI
 
 struct eventDetailView: View {
+    var imageName : String
+    var lieuName : String
+    var description : String
+    var reward : String
+    var duration: String
+    var impact: [String]
+    
     var body: some View {
                    
             VStack(alignment: .leading ,spacing: 20){
-                    Image(.restaurant1)
+                    Image(imageName)
                         .resizable()
                         .scaledToFit()
                     
-                    Text("Venir en vélo ou transport en commun et contribuer à préserver l'environnement.")
+                    Text(description)
                         .font(.body)
                         .padding(.horizontal)
                 
@@ -26,8 +33,7 @@ struct eventDetailView: View {
                 HStack {
                     Spacer()
                     VStack (alignment: .leading){
-                        
-                        // Tansformer en foreach de vue exterieur + généraliser le code
+  
                         
                         HStack{
                             
@@ -37,7 +43,7 @@ struct eventDetailView: View {
                                 .font(.title)
                             
                             
-                            Text("La Brasserie de la Gare")
+                            Text(lieuName)
                             
                             
                         }
@@ -50,7 +56,7 @@ struct eventDetailView: View {
                                 .font(.title)
                             
                             
-                            Text("30 Min")
+                            Text(duration)
                             
                             
                         }
@@ -64,7 +70,7 @@ struct eventDetailView: View {
                                 .font(.title)
                             
                             
-                            Text("Café Gratuit")
+                            Text(reward)
                             
                             
                         }
@@ -96,20 +102,21 @@ struct eventDetailView: View {
                     .font(.headline)
                     .padding(.horizontal)
                 
-                HStack{
+                HStack(spacing: 16){
+                    
                     Spacer()
                     VStack{
                         Image(systemName: "carbon.dioxide.cloud.fill")
                             .font(.largeTitle)
                         
-                        Text("Réduction de CO2")
+                        Text(impact[0])
                     }
                     
                     VStack{
                         Image(systemName: "carbon.dioxide.cloud.fill")
                             .font(.largeTitle)
                         
-                        Text("Réduction de CO2")
+                        Text(impact[1])
                     }
                     
                     Spacer()
@@ -148,5 +155,5 @@ struct eventDetailView: View {
 }
 
 #Preview {
-    eventDetailView()
+    eventDetailView(imageName: "Restaurant1", lieuName: "La brasserie de la gare", description: "venez en bus ou en vélo", reward: "Café gratuit", duration: "30 min", impact: ["Réduction CO2", "Réduction CO2"])
 }
