@@ -7,9 +7,11 @@
 
 import SwiftUI
 
-struct MesReservations: View {
+struct BanniereRestaurant: View {
     
-    @State private var aVenir : pickerOptions = .aVenir
+//    @State private var aVenir : pickerOptions = .aVenir
+//    @State private var passées : pickerOptions = .passées
+//    @State private var annulées : pickerOptions = .annulées
     
     var body: some View {
         VStack  {
@@ -34,26 +36,21 @@ struct MesReservations: View {
                     .padding(.top)
                     .padding(.leading)
                 Spacer()
+                Image(.filter)
+                    .padding(.leading)
+                    .padding(.top)
+                Spacer()
 
             }
-            
-            CustomPickerControl(selecteOption: $aVenir)
-            Spacer()
+//            Spacer() 
         }
     }
-    
-    
-    
     
     
 }
 
 
-
-
-
-
 #Preview {
-        MesReservations()
+        BanniereRestaurant()
             }
   
