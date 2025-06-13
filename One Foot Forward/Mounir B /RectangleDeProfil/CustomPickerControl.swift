@@ -27,6 +27,7 @@ struct CustomPickerControl: View {
                 
                 Button {
                     selecteOption = option
+                    
                 } label: {
                     HStack {
                         
