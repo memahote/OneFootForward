@@ -10,20 +10,21 @@ import SwiftUI
 struct Reservations_User: View {
     
     @State private var date = Date()
-    @State private var hour = []
     
     // MARK: - BODY
+    
     var body: some View {
         
         VStack {
             calendar
-           
+            Spacer()
+            TimeSlotsView()
         }
         .padding()
-        
     }
     
     // MARK: - CALENDAR VIEW
+    
     private var calendar: some View {
         
         
@@ -32,7 +33,7 @@ struct Reservations_User: View {
             Text("Réservations")
                 .font(.largeTitle)
                 .fontWeight(.bold)
-                .foregroundColor(Color("Black - Green"))
+                .foregroundStyle(.blackGreen)
             
             DatePicker(
                 "Start Date",
@@ -40,18 +41,10 @@ struct Reservations_User: View {
                 displayedComponents: [.date]
             )
             .datePickerStyle(.graphical)
-            
-            
         }
     }
-    
-    
-    //MARK: - TIME SLOTS VIEW
-    
-
-    
-    
 }
+
 // MARK: - Preview
 #Preview {
     Reservations_User()

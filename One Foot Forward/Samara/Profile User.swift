@@ -50,12 +50,12 @@ struct Profile_User: View {
     }
     
     private var avatarSection: some View {
-        Image(.avatar)
+        Image(.johnny)
             .resizable()
-            .scaledToFit()
+            .scaledToFill()
             .clipShape(Circle())
             .overlay(Circle().stroke(Color.bronze, lineWidth: 10))
-            .frame(width: 160, height: 160)
+            .frame(width: 150, height: 150)
             .shadow(radius: 1)
     }
     
@@ -78,12 +78,12 @@ struct Profile_User: View {
             ZStack(alignment: .leading) {
                 RoundedRectangle(cornerRadius: 20)
                     .fill(Color.white)
-                    .frame(width: 300, height: 30)
+                    .frame(width: 350, height: 35)
                     .shadow(radius: 4)
                 
                 RoundedRectangle(cornerRadius: 20)
                     .fill(Color.accentColor)
-                    .frame(width: (currentXP / totalXP) * 300, height: 30)
+                    .frame(width: (currentXP / totalXP) * 350, height: 35)
             }
             
             Text("\(Int(currentXP)) / \(Int(totalXP)) XP")
@@ -108,6 +108,10 @@ struct Profile_User: View {
                 ForEach(advantages) { item in
                     HStack () {
                         Image(systemName: item.systemImage)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 40, height: 40)
+                        
                         Text(item.name)
                         
                         Spacer()
@@ -127,6 +131,9 @@ struct Profile_User: View {
                 ForEach(rewards) { item in
                     HStack {
                         Image(systemName: item.systemImage)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 40, height: 40)
                         
                         VStack(alignment: .leading) {
                             Text(item.name)
