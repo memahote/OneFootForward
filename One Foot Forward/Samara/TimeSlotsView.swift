@@ -15,7 +15,7 @@ struct TimeSlotsView: View {
     let endHour = 18
     let intervalMinutes = 30
    
-    let disabledSlots: [String] = ["09:00", "11:00", "13:00"]
+    let disabledSlots: [String] = ["09:00", "11:00", "13:00", "13:30"]
 
   //MARK: - BODY
     
@@ -28,7 +28,7 @@ struct TimeSlotsView: View {
             ScrollView {
                 LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 15), count: 3), spacing: 15) {
 
-                    //MARK: - LOGIC FOR TIME SLOTS
+    //MARK: - LOGIC FOR TIME SLOTS
                     ForEach(generateTimeSlots(), id: \.self) { time in
                         let isDisabled = disabledSlots.contains(time)
 
@@ -52,25 +52,23 @@ struct TimeSlotsView: View {
                         }
                         .disabled(isDisabled)
                     }
-                    //MARK: - BUTTON
-               Spacer()
+                }.padding(.bottom, 9.0)
                 
-                    Button("Je réserve"){
-                        //TODO: - button logic
-                    }
-                    .font(.headline)
-                    .frame(maxWidth: .infinity)
-                    .buttonStyle(.borderedProminent)
-                    
-                    
+    //MARK: - BUTTON
+                Button("Je réserve"){
+                    //TODO: - button logic
                 }
-                
-                
+                .padding()
+                .font(.headline)
+                .frame(width: 120, height: 50)
+                .background(.accent)
+                .foregroundColor(.white)
+                .cornerRadius(10)
             }
         }
         .padding()
     }
-
+    
     //MARK: - FUNCTION IMPLEMENTATION
     
     func generateTimeSlots() -> [String] {
