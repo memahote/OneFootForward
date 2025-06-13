@@ -9,6 +9,7 @@ import SwiftUI
 
 struct chat: View {
     var body: some View {
+        NavigationStack{
         VStack{
             HStack{
                 // Titre principal
@@ -19,23 +20,32 @@ struct chat: View {
             }
             .padding()
             
-            ScrollView{
+            
                 
-                ForEach(listeDesTouristes){
-                    index in
-                    ExtractedViewChat(touriste: index)
+                ScrollView{
+                    
+                    ForEach(listeDesTouristes){ index in
+                        NavigationLink {
+                            Conversations()
+                        } label: {
+                            ExtractedViewChat(touriste: index)
+                        }
+
+                        
+                        
+                        
+                    }
+                    
+                    
                     
                 }
-                
-                
-                
             }
-            
         }
         
         
     }
 }
+
 
 #Preview {
     chat()

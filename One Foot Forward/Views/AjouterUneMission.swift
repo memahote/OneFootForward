@@ -9,16 +9,26 @@ import SwiftUI
 
 struct AjouterUneMission: View {
     var categories = ["Mobilité", "Nettoyage", "Nourriture", "Autre"]
-    @State private var selectedcategorie: String = "Mobilité"
+    
+    @Environment(\.dismiss) var dismiss
+
+    
     @State private var isOn = false
+    @State private var showAlert = false
+    
+    @State var newMission: typeMissions
+    @State var newMissionName: String = ""
+    @State var newMissionDescription: String = ""
+    @State private var selectedcategorie: String = "Mobilité"
+    @State var newMissionReward: String = ""
     
     
     var body: some View {
         
         Spacer(minLength: 50)
-
+        
         VStack{
-
+            
             HStack{
                 Image(.back)
                     .resizable()
@@ -59,7 +69,7 @@ struct AjouterUneMission: View {
                     }
                     .padding(.horizontal)
                     
-                    TextField("rentrer le nom...", text: .constant(""))
+                    TextField("rentrer le nom...", text: $newMissionName)
                         .textFieldStyle(.roundedBorder)
                         .padding(.horizontal)
                 }
@@ -117,7 +127,7 @@ struct AjouterUneMission: View {
                     }
                     .padding(.horizontal)
                     
-                    TextField("rentrer la description...", text: .constant(""))
+                    TextField("rentrer la description...", text: $newMissionDescription)
                         .textFieldStyle(.roundedBorder)
                         .padding(.horizontal)
                     
@@ -175,7 +185,7 @@ struct AjouterUneMission: View {
                     }
                     .padding(.horizontal)
                     
-                    TextField("Préciser la récompense...", text: .constant(""))
+                    TextField("Préciser la récompense...", text: $newMissionReward)
                         .textFieldStyle(.roundedBorder)
                         .padding(.horizontal)
                     
@@ -192,7 +202,18 @@ struct AjouterUneMission: View {
                     Spacer()
                 }
                 
-                Button(action: {}) {
+                Button(action: {
+                    newMission = typeMissions(missionName: newMissionName, missionDescription: newMissionDescription, missionCategory: selectedcategorie, missionReward: newMissionReward, missionBooking: isOn)
+                    
+                    missionList.append(newMission)
+                    
+                    showAlert = true
+                    
+                }
+                       
+                       
+                       
+                ) {
                     Text("Valider")
                         .padding(.horizontal, 15)
                         .padding(.vertical, 10)
@@ -201,47 +222,58 @@ struct AjouterUneMission: View {
                         .cornerRadius(10)
                 }
                 
-                Spacer(minLength: 50)
-                
-                
-             // Fin VSTACK Spacer
+                .alert("Mission validée", isPresented: $showAlert) {
+                    Button("OK", role: .cancel) {
+                        dismiss()
+                    }
+                } message: {
+                    Text("Votre mission a bien été validée")
+                }
             }
             
-            // Fin ScrollView
+            Spacer(minLength: 50)
             
+            
+            // Fin VSTACK Spacer
         }
-        // Fin Vstack principale
+        
+        // Fin ScrollView
+        
     }
-    // Fin body
-    
-    
-    
-    // Fin struc
-    //}
-    struct iOSCheckboxToggleStyle: ToggleStyle {
-        func makeBody(configuration: Configuration) -> some View {
-            // 1
-            Button(action: {
+    // Fin Vstack principale
+}
+// Fin body
+
+
+
+// Fin struc
+//}
+struct iOSCheckboxToggleStyle: ToggleStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        // 1
+        Button(action: {
+            
+            // 2
+            configuration.isOn.toggle()
+            
+        }, label: {
+            HStack {
+                // 3
+                Image(systemName: configuration.isOn ? "checkmark.square" : "square")
                 
-                // 2
-                configuration.isOn.toggle()
-                
-            }, label: {
-                HStack {
-                    // 3
-                    Image(systemName: configuration.isOn ? "checkmark.square" : "square")
-                    
-                    configuration.label
-                }
-            })
-        }
+                configuration.label
+            }
+        })
     }
 }
 
 
 
+
 #Preview {
-    AjouterUneMission()
+    
+    AjouterUneMission(newMission: typeMissions.init(missionName: "", missionDescription: "", missionCategory: "", missionReward: "", missionBooking: false))
+    
 }
 
 

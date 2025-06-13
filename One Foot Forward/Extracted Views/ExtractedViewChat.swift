@@ -27,6 +27,7 @@ struct ExtractedViewChat: View {
                 HStack{
                     Text(touriste.nom)
                         .font(.headline)
+                        .foregroundStyle(Color.black)
                     
                     Spacer()
                 }
@@ -34,7 +35,10 @@ struct ExtractedViewChat: View {
                 HStack{
                     Text(touriste.texte)
                         .lineLimit(1)
+                        .foregroundStyle(Color.black)
+
                     Spacer()
+                    
                     
                 }
             }

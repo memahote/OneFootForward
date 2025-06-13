@@ -32,6 +32,6 @@ var Message1: Message = Message(texte: "Merci pour votre réservation. Nous vous
 var Message2: Message = Message(texte: "Super !", date: Date(), isSender: false)
 var Message3: Message = Message(texte: "Mon expérience s'est très bien passée, j'espère pouvoir repasser vous voir rapidement !", date: Date(), isSender: false)
 var Message4: Message = Message(texte: "Vous êtes la bienvenue !", date: Date(), isSender: true)
-var Message5: Message = Message(texte: "Merci ! \n Je voulais également vous demander si vous avez des recommendations pour les restaurants ou les attractions à visiter à Nice ? Nous sommes en road trip dans le coin et Nice est notre prochaine destination !", date: Date(), isSender: false)
+var Message5: Message = Message(texte: "Merci ! \nJe voulais également vous demander si vous avez des recommandations pour les restaurants ou les attractions à visiter à Nice ? Nous sommes en road trip dans le coin et Nice est notre prochaine destination !", date: Date(), isSender: false)
 
 var listeDesMessages: [Message] = [Message1, Message2, Message3, Message4, Message5]
