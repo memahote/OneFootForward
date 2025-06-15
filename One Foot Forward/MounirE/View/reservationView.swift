@@ -12,7 +12,7 @@ enum pickerOptionsRes: String, CaseIterable {
     case passe = "Pasées"
     case annuler = "Annulées"
     
-   
+    
 }
 
 struct CustomPickerControlRes: View {
@@ -57,114 +57,53 @@ struct CustomPickerControlRes: View {
 struct reservationView: View {
     
     @State private var selecteOption: pickerOptionsRes = .avenir
-  
-
+    @State private var futureEvents = sampleModulesList
+    @State private var canceledEvents = cancelModuleList
+    @State private var pastEvents = passedModuleList
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            
-            HStack {
-                Text("Mes Réservations")
-                    .font(.largeTitle)
-                    .bold()
+        
+            VStack(alignment: .leading, spacing: 12) {
                 
-                Spacer()
-            }
-            .padding(.horizontal)
-            
-            CustomPickerControlRes(selecteOption: $selecteOption)
+                HStack {
+                    Text("Mes Réservations")
+                        .font(.largeTitle)
+                        .bold()
+                    
+                    Spacer()
+                }
                 .padding(.horizontal)
-            
-            VStack{
-                ScrollView{
-                    ForEach(listeDesTouristes){index in
-                        
-                        VStack{
-                            HStack{
-                                Text(index.date   , format: .dateTime.day().month().year())
-                                Spacer()
-                            }
-                            .padding()
-                            
-                            Divider()
-                            
-                            HStack{
-                                
-                                VStack{
-   
-                                        Image(index.photo)
-                                            .resizable()
-                                            .scaledToFill()
-                                            .frame(width: 100, height: 100)
-                                            .clipShape(Circle())
-                                   
-                                }
-                                Spacer(minLength: 40)
-                                
-                                VStack{
-                                    HStack{
-                                        Text(index.mission)
-                                            .font(.headline)
-                                           
-                                        Spacer()
-                                        
-                                    }
-                                    
-                                    HStack{
-                                        Image(.time)
-                                        Text("\(index.duree)")
-                                        Spacer()
-                                    }
-                                    
-                                    HStack{
-                                        Image(.location)
-                                        Text("\(index.lieu)")
-                                        Spacer()
-                                        
-                                    }
-                                    
-                                    HStack{
-                                        Button(action: {}) {
-                                            Text("Contacter")
-                                                .padding(.horizontal, 15)
-                                                .padding(.vertical, 10)
-                                                .foregroundColor(.black)
-                                                .background(Color.accent)
-                                                .cornerRadius(10)
-                                        }
-                                        
-                                        Button(action: {}) {
-                                            Text("Annuler")
-                                                .padding(.horizontal, 15)
-                                                .padding(.vertical, 10)
-                                                .foregroundColor(.black)
-                                                .background(.gray)
-                                                .cornerRadius(10)
-                                        }
-                                        
-                                        
-                                    }
-                                }
-                                
+                
+                CustomPickerControlRes(selecteOption: $selecteOption)
+                    .padding(.horizontal)
+                
+                ScrollView (showsIndicators: false){
+                    
+                    if selecteOption == .avenir {
+                        ForEach(futureEvents) { item in
+                            reservationCard(item: item, color: .white, pickerOptions: selecteOption){
+                                futureEvents.removeAll { $0.id == item.id }
+                                canceledEvents.append(item)
                             }
                             
                         }
-                        .frame(width: 360, height: 180)
-                        .padding()
-                        .padding(.bottom, 20)
-                        .background(Color.white)
-                        .cornerRadius(20)
-                        .shadow(color: .gray.opacity(0.3), radius: 5, x: 2, y: 2)
+                    }
                     
-                        Spacer(minLength: 20)
-                        
+                    else if selecteOption == .passe {
+                        ForEach(passedModuleList) { item in
+                            reservationCard(item: item, color: Color.accent.opacity(0.7), pickerOptions: selecteOption)
+                        }
+                    }
+                    
+                    else if selecteOption == .annuler {
+                        ForEach(canceledEvents) { item in
+                            reservationCard(item: item, color: Color.gray.opacity(0.7), pickerOptions: selecteOption)
+                        }
                     }
                     
                 }
-                
             }
-            
-        }
+        
     }
 }
 

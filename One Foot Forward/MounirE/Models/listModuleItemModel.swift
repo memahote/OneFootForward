@@ -41,7 +41,7 @@ let sampleModulesList: [ModuleItem] = [
         lieuName: "Quais de Seine",
         description: "Ramassage de déchets en bord de Seine",
         reward: "Tote bag offert",
-        duration: "30 min",
+        duration: "60 min",
         impact: ["Réduction de CO2", "Réduction de CO2"],
         coordinate: CLLocationCoordinate2D(latitude: 48.85523, longitude: 2.35397)
     ),
@@ -50,7 +50,7 @@ let sampleModulesList: [ModuleItem] = [
         lieuName: "Bibliothèque municipale",
         description: "Atelier de réparation de vélos",
         reward: "Café offert",
-        duration: "30 min",
+        duration: "45 min",
         impact: ["Réduction de CO2", "Réduction de CO2"],
         coordinate: CLLocationCoordinate2D(latitude: 48.84404, longitude: 2.37004)
     ),
@@ -68,16 +68,20 @@ let sampleModulesList: [ModuleItem] = [
         lieuName: "Jardin partagé Saint-Blaise",
         description: "Participation à l’entretien des plantes",
         reward: "Légumes frais",
-        duration: "30 min",
+        duration: "10 min",
         impact: ["Réduction de CO2", "Réduction de CO2"],
         coordinate: CLLocationCoordinate2D(latitude: 48.86097, longitude: 2.40579)
-    ),
+    )
+]
+
+
+let passedModuleList: [ModuleItem]  = [
     ModuleItem(
         imageName: "BikeRide",
         lieuName: "Parc de Bercy",
         description: "Balade à vélo collective anti-pollution",
         reward: "Boisson offerte",
-        duration: "30 min",
+        duration: "90 min",
         impact: ["Réduction de CO2", "Réduction de CO2"],
         coordinate: CLLocationCoordinate2D(latitude: 48.83442, longitude: 2.38067)
     ),
@@ -90,6 +94,10 @@ let sampleModulesList: [ModuleItem] = [
         impact: ["Réduction de CO2", "Réduction de CO2"],
         coordinate: CLLocationCoordinate2D(latitude: 48.84497, longitude: 2.35304)
     ),
+    
+]
+
+let cancelModuleList: [ModuleItem]  = [
     ModuleItem(
         imageName: "DoItYourself",
         lieuName: "Maison du Zéro Déchet",
@@ -108,4 +116,5 @@ let sampleModulesList: [ModuleItem] = [
         impact: ["Réduction de CO2", "Réduction de CO2"],
         coordinate: CLLocationCoordinate2D(latitude: 48.86004, longitude: 2.35104)
     )
+    
 ]

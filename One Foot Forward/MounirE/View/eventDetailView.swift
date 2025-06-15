@@ -17,14 +17,15 @@ struct eventDetailView: View {
     
     var body: some View {
                    
+        NavigationStack{
             VStack(alignment: .leading ,spacing: 20){
-                    Image(imageName)
-                        .resizable()
-                        .scaledToFit()
-                    
-                    Text(description)
-                        .font(.body)
-                        .padding(.horizontal)
+                Image(imageName)
+                    .resizable()
+                    .scaledToFit()
+                
+                Text(description)
+                    .font(.body)
+                    .padding(.horizontal)
                 
                 Text("Infos Pratiques")
                     .font(.headline)
@@ -33,7 +34,7 @@ struct eventDetailView: View {
                 HStack {
                     Spacer()
                     VStack (alignment: .leading){
-  
+                        
                         
                         HStack{
                             
@@ -127,29 +128,33 @@ struct eventDetailView: View {
                     
                     VStack {
                         
-                        Button {
-                            
+                        NavigationLink {
+                            Reservations_User()
                         } label: {
                             Text("Je relève le défi")
-                                .foregroundStyle(.white)
-                                .background(
-                                    RoundedRectangle(cornerRadius: 10)
-                                        .frame(width: 150, height: 35)
-                                )
-                        }.padding()
+                                .padding()
+                                .frame(width: 200)
+                                .background(Color.accentColor)
+                                .foregroundColor(.white)
+                                .cornerRadius(10)
+                        }
                         
-                        Text("Réaliser ")
-                        + Text("346").foregroundStyle(.accent) + Text(" fois ce mois")
+
+                        
+                        Text("Réalisé ")
+                        + Text("346 ").foregroundStyle(.accent) + Text(" fois ce mois")
                     }
                     
                     Spacer()
                 }
                 .padding()
-
+                
                 
             }
             .ignoresSafeArea()
             
+        }
+        
         
     }
 }

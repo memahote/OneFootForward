@@ -15,6 +15,8 @@ struct DetailView: View {
         var item: ModuleItem
         
         var body: some View {
+            
+            
             VStack(spacing: 20) {
                 
                 HStack{
@@ -43,6 +45,9 @@ struct DetailView: View {
                     .font(.title)
                     .bold()
 
+                Text(item.description)
+                    .font(.subheadline)
+                
                 HStack(spacing: 30) {
                     
                     HStack {
@@ -60,7 +65,7 @@ struct DetailView: View {
                 .font(.body)
 
                 Button("Voir plus") {
-                    // lancer le détail, par ex. avec NavigationLink
+                    // lancer le détail
                 }
                 .padding()
                 .frame(width: 200)
