@@ -17,64 +17,68 @@ struct DetailView: View {
         var body: some View {
             
             
-            VStack(spacing: 20) {
-                
-                HStack{
-                    Spacer()
+            NavigationStack {
+                VStack(spacing: 20) {
                     
-                    Button {
-                        dismiss()
+                    HStack{
+                        Spacer()
+                        
+                        Button {
+                            dismiss()
+                        } label: {
+                            Image(systemName: "xmark.circle.fill")
+                                .font(.title)
+                                .foregroundStyle(.red)
+                        }
+                        
+                    }
+                    
+                    Image(item.imageName)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(height: 200)
+                        .cornerRadius(20)
+                        .shadow(radius: 10)
+                        .padding()
+                    
+                    
+                    Text(item.lieuName)
+                        .font(.title)
+                        .bold()
+                    
+                    Text(item.description)
+                        .font(.subheadline)
+                    
+                    HStack(spacing: 30) {
+                        
+                        HStack {
+                            Image(systemName: "clock.fill")
+                                .foregroundStyle(.gray)
+                            Text(item.duration)
+                        }
+                        
+                        HStack {
+                            Image(systemName: "trophy.fill")
+                                .foregroundStyle(.yellow)
+                            Text(item.reward)
+                        }
+                    }
+                    .font(.body)
+                    
+                    NavigationLink {
+                        Reservations_User()
                     } label: {
-                        Image(systemName: "xmark.circle.fill")
-                            .font(.title)
-                            .foregroundStyle(.red)
-                    }
-
-                }
-                
-                Image(item.imageName)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(height: 200)
-                    .cornerRadius(20)
-                    .shadow(radius: 10)
-                    .padding()
-                    
-
-                Text(item.lieuName)
-                    .font(.title)
-                    .bold()
-
-                Text(item.description)
-                    .font(.subheadline)
-                
-                HStack(spacing: 30) {
-                    
-                    HStack {
-                        Image(systemName: "clock.fill")
-                            .foregroundStyle(.gray)
-                        Text(item.duration)
+                        Text("Je relève le défi")
+                            .padding()
+                            .frame(width: 200)
+                            .background(Color.accent)
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
                     }
                     
-                    HStack {
-                        Image(systemName: "trophy.fill")
-                            .foregroundStyle(.yellow)
-                        Text(item.reward)
-                    }
-                }
-                .font(.body)
-
-                Button("Voir plus") {
-                    // lancer le détail
                 }
                 .padding()
-                .frame(width: 200)
-                .background(Color.accentColor)
-                .foregroundColor(.white)
-                .cornerRadius(10)
-
             }
-            .padding()
         }
     
 }

@@ -18,6 +18,11 @@ struct LoginView: View {
         NavigationView {
             VStack(spacing: 20) {
                 
+                
+                Image(.logoOff)
+                    .resizable()
+                    .scaledToFit()
+                
                 Text("Connexion")
                     .font(.largeTitle)
                     .padding()
@@ -55,6 +60,18 @@ struct LoginView: View {
                     Text("Identifiant ou mot de passe incorrect.")
                         .foregroundColor(.red)
                 }
+                
+                HStack {
+                    Text("Pas encore de compte ? ")
+                    
+                    Button(action: {
+                        
+                    }, label: {
+                        Text("Inscrivez-vous")
+                    })
+                }
+                
+
                 
                 NavigationLink("", destination: MainViewTourist(), isActive: $showTouriste)
                     .hidden()
