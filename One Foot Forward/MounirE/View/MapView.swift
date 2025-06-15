@@ -52,37 +52,20 @@ struct CustomSegmentedControlMap: View {
 }
 
 
-struct Location: Identifiable {
-    let id = UUID()
-    let name: String
-    let description: String
-    let coordinate: CLLocationCoordinate2D
-}
+
 
 struct MapView: View {
     
     @State private var searchText: String = ""
     @State var selectedOption : Options = .carte
     @State private var showingSheet = false
-    @State private var position: MapCameraPosition = .userLocation(fallback: .automatic)
-    @State private var showSheet = false
-    @State private var selectedLocation: Location?
+    @State private var position: MapCameraPosition = .automatic
+    @State private var selectedLocation: ModuleItem?
     @State private var region = MKCoordinateRegion(
         center: CLLocationCoordinate2D(latitude: 48.849, longitude: 2.370),
         span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
     )
     
-    let locations: [Location] = [
-        Location(name: "Brasserie de la Gare",
-                 description: "Petit café parisien avec une belle terrasse.",
-                 coordinate: CLLocationCoordinate2D(latitude: 48.84907, longitude: 2.37098)),
-        Location(name: "Jardin des Plantes",
-                 description: "Jardin botanique chargé d'Histoire.",
-                 coordinate: CLLocationCoordinate2D(latitude: 48.84431, longitude: 2.35955)),
-        Location(name: "Musée",
-                 description: "Peintures, sculptures et expositions temporaires.",
-                 coordinate: CLLocationCoordinate2D(latitude: 48.84219, longitude: 2.35623))
-    ]
     
     
     var body: some View {
@@ -94,21 +77,26 @@ struct MapView: View {
                 if selectedOption == .carte {
                     
                     
-                    Map {
+                    Map (position: $position){
                         
-                        ForEach(locations) { location in
-                            Annotation(location.name, coordinate: location.coordinate) {
+                        ForEach(sampleModulesList) { item in
+                            Annotation(item.lieuName, coordinate: item.coordinate) {
                                 Image(systemName: "mappin.circle.fill")
                                     .font(.title)
                                     .foregroundColor(.red)
                                     .onTapGesture {
-                                        selectedLocation = location
+                                        selectedLocation = item
+                                        withAnimation {
+                                            position = .region(MKCoordinateRegion(
+                                                center: item.coordinate,
+                                                span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)))
+                                        }
                                     }
                             }
                         }
                     }
-                    .sheet(item: $selectedLocation) { location in
-                        DetailView(location: location)
+                    .sheet(item: $selectedLocation) { item in
+                        DetailView(item: item)
                             .presentationDetents([.fraction(0.65), .large])
                     }
                 }
