@@ -68,7 +68,7 @@ struct reservationView: View {
                 
                 HStack {
                     Text("Mes Réservations")
-                        .font(.largeTitle)
+                        .font(.title)
                         .bold()
                     
                     Spacer()
@@ -76,7 +76,7 @@ struct reservationView: View {
                 .padding(.horizontal)
                 
                 CustomPickerControl(selecteOption: $selecteOption)
-                    .padding(.horizontal)
+
                 
                 ScrollView (showsIndicators: false){
                     
@@ -104,6 +104,7 @@ struct reservationView: View {
                     
                 }
             }
+            .padding(.horizontal)
         }
             
     }

@@ -58,6 +58,7 @@ struct Chat_User: View {
                 .padding()
             }
         }
+        .toolbarVisibility(.hidden, for: .tabBar)
         .navigationBarBackButtonHidden(true)
         .toolbar{
             ToolbarItem(placement: .topBarLeading){

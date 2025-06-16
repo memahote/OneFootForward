@@ -41,9 +41,9 @@ struct Chat_Detail_User: View {
                 HStack {
                     TextField("Nouveau message", text: $message)
                         .padding()
-                        .frame(height: 50)
+                        .frame(width: 330, height: 50)
                         .background(Color.white)
-                        .cornerRadius(20)
+                        .cornerRadius(15)
                         .shadow(color: Color.gray.opacity(0.3), radius: 15, x: 2, y: 2)
                     
                     Button {
@@ -55,11 +55,11 @@ struct Chat_Detail_User: View {
                     } label: {
                         Image(systemName: "paperplane.fill")
                             .resizable()
-                            .frame(width: 40, height: 40)
+                            .frame(width: 35, height: 35)
                             .foregroundStyle(Color.accentColor)
                     }
                 }
-                .padding()
+                .padding(.horizontal, 20)
             }
             
             
@@ -88,6 +88,8 @@ struct Chat_Detail_User: View {
             .edgesIgnoringSafeArea(.top)
         }
         .navigationBarBackButtonHidden(true)
+        .toolbarVisibility(
+            .hidden, for: .tabBar)
     }
     
 }

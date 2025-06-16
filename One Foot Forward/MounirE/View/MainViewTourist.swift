@@ -24,7 +24,7 @@ struct MainViewTourist: View {
                     
                     MapView()
                         .tabItem {
-                            Label("Défi", image: "Location")
+                            Label("Défis", image: "Location")
                         }
                         .tag(1)
                     Profile_User()
