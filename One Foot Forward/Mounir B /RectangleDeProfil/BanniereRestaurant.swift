@@ -35,14 +35,9 @@ struct BanniereRestaurant: View {
                     .font(.title)
                     .padding(.top)
                     .padding(.leading)
-                Spacer()
-                Image(.filter)
-                    .padding(.leading)
-                    .padding(.top)
-                Spacer()
+               
 
             }
-//            Spacer() 
         }
     }
     

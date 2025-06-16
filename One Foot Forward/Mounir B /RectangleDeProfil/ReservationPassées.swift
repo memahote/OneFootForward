@@ -9,6 +9,9 @@ import SwiftUI
 
 struct ReservationPassées : View {
   @State  var selecteOption: pickerOptions = .passées
+  @State private var afficherNotation = false
+  @State private var noteTemporaire: Int = 0
+    
     var body: some View {
         
         VStack{
@@ -79,7 +82,10 @@ struct ReservationPassées : View {
                                             .cornerRadius(10)
                                     }
                                     
-                                    Button(action: {}) {
+                                    Button(action: {
+                                        noteTemporaire = 0
+                                        afficherNotation = true
+                                    }) {
                                         Text("Noter")
                                             .padding(.horizontal, 15)
                                             .padding(.vertical, 10)
@@ -87,7 +93,6 @@ struct ReservationPassées : View {
                                             .background(.gray)
                                             .cornerRadius(10)
                                     }
-                                    
                                     
                                 }
                             }
@@ -106,6 +111,35 @@ struct ReservationPassées : View {
                     
                 }
                 .padding(30)
+            }
+            
+            .sheet(isPresented: $afficherNotation) {
+                VStack(spacing: 20) {
+                    Text("Donner une note")
+                        .font(.headline)
+
+                    HStack {
+                        ForEach(1...5, id: \.self) { etoile in
+                            Image(systemName: etoile <= noteTemporaire ? "star.fill" : "star")
+                                .resizable()
+                                .frame(width: 40, height: 40)
+                                .foregroundColor(.yellow)
+                                .onTapGesture {
+                                    noteTemporaire = etoile
+                                }
+                        }
+                    }
+
+                    Button("Fermer") {
+                        afficherNotation = false
+                    }
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(Color.accent)
+                    .foregroundColor(.white)
+                    .cornerRadius(10)
+                }
+                .padding()
             }
             
         }
