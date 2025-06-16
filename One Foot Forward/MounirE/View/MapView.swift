@@ -51,19 +51,21 @@ struct CustomSegmentedControlMap: View {
     }
 }
 
+
+
+
 struct MapView: View {
     
     @State private var searchText: String = ""
     @State var selectedOption : Options = .carte
     @State private var showingSheet = false
-    @State private var position: MapCameraPosition = .userLocation(fallback: .automatic)
-    @State private var showSheet = false
+    @State private var position: MapCameraPosition = .automatic
+    @State private var selectedLocation: ModuleItem?
+    @State private var region = MKCoordinateRegion(
+        center: CLLocationCoordinate2D(latitude: 48.849, longitude: 2.370),
+        span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+    )
     
-    let brasserie = CLLocationCoordinate2D(latitude: 48.84907150268555, longitude: 2.3709897994995117)
-    
-    let jardinDesPlantes = CLLocationCoordinate2D(latitude: 48.844312210441956, longitude: 2.3595523231077165)
-    
-    let musee = CLLocationCoordinate2D(latitude: 48.842193947885, longitude: 2.3562263839292497)
     
     
     var body: some View {
@@ -75,14 +77,31 @@ struct MapView: View {
                 if selectedOption == .carte {
                     
                     
-                    Map(position: $position){
-                        Marker("Brasserie de la gare", coordinate: brasserie)
-                        Marker("Jardin Des Plantes", coordinate: jardinDesPlantes)
-                        Marker("Musée", coordinate: musee)
+                    Map (position: $position){
+                        
+                        ForEach(sampleModulesList) { item in
+                            Annotation(item.lieuName, coordinate: item.coordinate) {
+                                Image(systemName: "mappin.circle.fill")
+                                    .font(.title)
+                                    .foregroundColor(.red)
+                                    .onTapGesture {
+                                        selectedLocation = item
+                                        withAnimation {
+                                            position = .region(MKCoordinateRegion(
+                                                center: item.coordinate,
+                                                span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)))
+                                        }
+                                    }
+                            }
+                        }
                     }
-                    
-                    
-                } else {
+                    .sheet(item: $selectedLocation) { item in
+                        DetailView(item: item)
+                            .presentationDetents([.fraction(0.65), .large])
+                    }
+                }
+                
+                else {
                     
                     
                     VStack {
@@ -174,16 +193,11 @@ struct MapView: View {
             }
             .toolbar(.hidden)
         }
-    
-        
-        
-        
-        
         
         
     }
+    
 }
-
 #Preview {
     MapView()
 }
