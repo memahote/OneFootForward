@@ -9,15 +9,17 @@ import SwiftUI
 
 struct Missions: View {
     
-    @State private var date = Date()
+    @State var date = Date()
+    @State var newMission: typeMissions
+
     
-    private var missionsString = ["Ramassage de déchets - 1h", "Ramassage de déchets - 1h30", "Ramassage de déchets - 2h"]
-    
-    private var cartesImage: [Image] = [Image(.nettoyage1), Image(.nettoyage2), Image(.nettoyage3)]
+    @State var missionsString: [typeMissions] = missionList
     
     
     var body: some View {
-        header()
+        NavigationStack{
+            header()
+        }
     }
     
     
@@ -36,7 +38,9 @@ struct Missions: View {
                 .padding()
                 
                 // Bouton pour valider la mission
-                Button(action: {}) {
+                NavigationLink(destination: ScanQRCode()){
+                    
+                 
                     Text("Valider une mission")
                         .padding(.horizontal, 15)
                         .padding(.vertical, 10)
@@ -48,16 +52,26 @@ struct Missions: View {
                 
                 // ScrollView mission
                 
-                ScrollView(.horizontal){
+                ScrollView(.horizontal, showsIndicators: false){
                     HStack(spacing: 10){
-                        missionsCards()
+                        missionsCards(missionsString)
                     }
                     .padding()
                 }
                 
                 // Bouton Ajouter une mission
                 
-                Button(action: {}) {
+                    NavigationLink(destination: AjouterUneMission(
+                        newMission: typeMissions(
+                            missionImage: "",
+                            missionName: "",
+                            missionDescription: "",
+                            missionCategory: "Mobilité",
+                            missionReward: "",
+                            missionBooking: false
+                        ), missionList: $missionsString
+                    ))
+                {
                     
                     HStack{
                         Text("Ajouter une mission")
@@ -106,9 +120,10 @@ struct Missions: View {
     
     // Cartes mission liste
     
-    func missionsCards() -> some View {
+    func missionsCards(_ missionsString: [typeMissions]) -> some View {
+        
         // Logique
-        ForEach(0..<missionsString.count, id: \.self) { index in
+        return ForEach(0..<missionsString.count, id: \.self) { index in
             ZStack{
                 
                 
@@ -119,7 +134,7 @@ struct Missions: View {
                     .cornerRadius(20)
                 
                 
-                self.cartesImage[index]
+                Image(missionsString[index].missionImage)
                     .resizable()
                     .scaledToFill()
                     .frame(width: 150, height: 200)
@@ -130,19 +145,18 @@ struct Missions: View {
                 
                 
                 
-                VStack{
+                VStack(alignment: .leading){
                     Spacer(minLength: 150)
                     HStack{
-                        Text(self.missionsString[index])
+                        Text(missionsString[index].missionName)
                             .font(.caption)
                             .fontWeight(.bold)
-                            .padding(.horizontal, 10)
                             .padding(.bottom, 10)
                             .frame(width: 120, height: 50)
                             .foregroundColor(Color.white)
-                            .font(.title2)
                             .multilineTextAlignment(.leading)
-                        Spacer(minLength: 25)
+
+                        Spacer(minLength: 30)
                     }
                     
                 }
@@ -174,7 +188,15 @@ struct Missions: View {
 
 
 #Preview {
-    Missions()
+    Missions(newMission: typeMissions(
+        missionImage: "",
+        missionName: "",
+        missionDescription: "",
+        missionCategory: "Mobilité",
+        missionReward: "",
+        missionBooking: false
+    )
+)
 }
 
 

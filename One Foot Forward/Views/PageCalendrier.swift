@@ -116,7 +116,7 @@ struct PageCalendrier: View {
                                             .padding(.horizontal, 15)
                                             .padding(.vertical, 10)
                                             .foregroundColor(.black)
-                                            .background(.gray)
+                                            .background(.red.opacity(0.5))
                                             .cornerRadius(10)
                                     }
                                     

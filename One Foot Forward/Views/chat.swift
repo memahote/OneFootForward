@@ -8,29 +8,34 @@
 import SwiftUI
 
 struct chat: View {
+    
+    var touristsList: [Touristes] = listeDesTouristes
+    
+    
+    
     var body: some View {
         NavigationStack{
-        VStack{
-            HStack{
-                // Titre principal
-                Text("Ma messagerie")
-                    .font(.title)
-                    .fontWeight(.bold)
-                Spacer()
-            }
-            .padding()
-            
-            
+            VStack{
+                HStack{
+                    // Titre principal
+                    Text("Ma messagerie")
+                        .font(.title)
+                        .fontWeight(.bold)
+                    Spacer()
+                }
+                .padding()
+                
+                
                 
                 ScrollView{
                     
-                    ForEach(listeDesTouristes){ index in
+                    ForEach(touristsList){ touriste in
                         NavigationLink {
-                            Conversations()
+                            Conversations(messageList: touriste.messages, touriste: touriste)
                         } label: {
-                            ExtractedViewChat(touriste: index)
+                            ExtractedViewChat(touriste: touriste)
                         }
-
+                        
                         
                         
                         
@@ -40,9 +45,13 @@ struct chat: View {
                     
                 }
             }
+            
+            
+            
         }
         
         
+       
     }
 }
 

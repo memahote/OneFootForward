@@ -14,11 +14,21 @@ struct ContentView: View {
         TabView {
             
             Tab("Profil", image: "Profil"){
-                Missions()
+                Dashboard()
             }
             Tab("Missions", image: "Booking"){
+                Missions(newMission: typeMissions(
+                    missionImage: "",
+                    missionName: "",
+                    missionDescription: "",
+                    missionCategory: "Mobilité",
+                    missionReward: "",
+                    missionBooking: false
+                )
+            )
             }
             Tab("Messages", image: "Chat"){
+                chat()
             }
         }
     }
