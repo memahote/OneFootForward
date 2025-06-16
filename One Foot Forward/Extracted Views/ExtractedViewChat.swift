@@ -9,6 +9,10 @@ import SwiftUI
 
 struct ExtractedViewChat: View {
     var touriste: Touristes
+    @State private var showAlert = false
+    @State private var isPressed: Bool = false
+    @State private var isButtonVisible: Bool = true
+    
     var body: some View {
         HStack{
             ZStack{
@@ -36,35 +40,43 @@ struct ExtractedViewChat: View {
                     Text(touriste.texte)
                         .lineLimit(1)
                         .foregroundStyle(Color.black)
-
+                    
                     Spacer()
                     
                     
                 }
             }
-            Button(action: {}) {
-                Text(Image(.exclamation))
-                    .padding(.horizontal, 15)
-                    .padding(.vertical, 10)
-                    .foregroundColor(.white)
-                    .background(.red)
-                    .cornerRadius(10)
+            if isButtonVisible {
+                Button(action: {
+                    showAlert = true
+                    isPressed = true
+                                    }) {
+                    Text(Image(.exclamation))
+                        .padding(.horizontal, 15)
+                        .padding(.vertical, 10)
+                        .foregroundColor(.white)
+                        .background(Color.red)
+                        .cornerRadius(10)
+                }
+                .alert("Cet utilisateur sera signalé", isPresented: $showAlert) {
+                    Button("OK", role: .cancel){
+                        isButtonVisible = false
+                    }}
+                .padding()
+                
+                
+                
             }
-            .padding()
+                
             
-
-            
-        }
-        .background(.white)
-        .cornerRadius(20)
-        .frame(width: 380, height: 100)
-        .padding(.horizontal)
-        .padding(.top, 15)
-        .shadow(color: .gray.opacity(0.3), radius: 5, x: 2, y: 2)
-        
-        
+        }.background(isPressed ? Color.gray.opacity(0.3) : Color.white)
+            .cornerRadius(20)
+            .frame(width: 380, height: 100)
+            .padding(.horizontal)
+            .padding(.top, 15)
+            .shadow(color: .gray.opacity(0.3), radius: 5, x: 2, y: 2)
     }
-
+    
 }
 
 #Preview {
