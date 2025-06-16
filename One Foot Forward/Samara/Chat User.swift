@@ -17,8 +17,8 @@ struct Contact: Identifiable {
 }
 
 struct Chat_User: View {
-
-//MARK: - DATA SOURCE
+    
+    //MARK: - DATA SOURCE
     let contacts = [
         Contact(imageName: "restaurant", title: "Le clos d’Émile", subtitle: "Merci pour votre message, n’hésitez pas …"),
         Contact(imageName: "pilates", title: "Pilate’n co", subtitle: "Merci pour votre message, n’hésitez pas …"),
@@ -33,30 +33,43 @@ struct Chat_User: View {
     
     var body: some View {
         
-        NavigationStack {
-            
+        
+        VStack{
             HStack {
                 Text("Ma Messagerie")
                     .font(.largeTitle)
                     .fontWeight(.bold)
-                    .foregroundStyle(.blackGreen)
+                    .foregroundStyle(.black)
                     .padding()
                 
                 Spacer()
             }
-            
-            ScrollView {
+            ScrollView (showsIndicators: false){
                 VStack(spacing: 16) {
                     ForEach(contacts) { contact in
-                        NavigationLink(destination: Chat_Detail_User()) {
+                        NavigationLink {
+                            Chat_Detail_User()
+                        } label: {
                             ContactCard(contact: contact)
                         }
+                        
                     }
                 }
                 .padding()
             }
         }
-      
+        .toolbarVisibility(.hidden, for: .tabBar)
+        .navigationBarBackButtonHidden(true)
+        .toolbar{
+            ToolbarItem(placement: .topBarLeading){
+                    backButton()
+                    
+                
+            }
+            
+        }
+            
+        
     }
 }
 
@@ -76,6 +89,7 @@ struct ContactCard: View {
             VStack(alignment: .leading, spacing: 4) {
                 Text(contact.title)
                     .font(.headline)
+                    .foregroundStyle(.black)
                     .fontWeight(.bold)
                 
                 Text(contact.subtitle)
@@ -90,6 +104,7 @@ struct ContactCard: View {
         .background(Color(.systemBackground))
         .cornerRadius(20)
         .shadow(color: Color.black.opacity(0.05), radius: 8, x: 0, y: 4)
+        
     }
 }
 

@@ -57,8 +57,9 @@ struct CustomSegmentedControlMap: View {
 struct MapView: View {
     
     @State private var searchText: String = ""
-    @State var selectedOption : Options = .carte
+    @State private var selectedOption : Options = .carte
     @State private var showingSheet = false
+    @State private var showReservations = false
     @State private var position: MapCameraPosition = .automatic
     @State private var selectedLocation: ModuleItem?
     @State private var region = MKCoordinateRegion(
@@ -96,9 +97,11 @@ struct MapView: View {
                         }
                     }
                     .sheet(item: $selectedLocation) { item in
-                        DetailView(item: item)
+                        DetailView(showReservations : $showReservations, item: item)
                             .presentationDetents([.fraction(0.65), .large])
                     }
+                   
+                    
                 }
                 
                 else {
@@ -192,6 +195,9 @@ struct MapView: View {
                 }
             }
             .toolbar(.hidden)
+            .navigationDestination(isPresented: $showReservations) {
+                            Reservations_User()
+                        }
         }
         
         

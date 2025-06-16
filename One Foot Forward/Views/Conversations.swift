@@ -101,17 +101,8 @@ struct Conversations: View {
                         Spacer(minLength: 40)
 
                         HStack{
-                            Button(action:{
-                                dismiss()
-                            }, label:{
-                                Image("Back")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(height: 44)
-                                
-                                    .padding(.leading)
-                                
-                            })
+                            backButton()
+                            
                             ZStack{
                                 
                                 

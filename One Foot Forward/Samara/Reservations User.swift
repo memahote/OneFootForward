@@ -16,11 +16,23 @@ struct Reservations_User: View {
     var body: some View {
         
         VStack {
+            ScrollView (showsIndicators: false){
             calendar
-            Spacer()
+            
             TimeSlotsView()
+            }
+            
         }
         .padding()
+        .navigationBarBackButtonHidden(true)
+        .toolbar{
+            ToolbarItem(placement: .topBarLeading){
+                    backButton()
+                    
+                
+            }
+            
+        }
     }
     
     // MARK: - CALENDAR VIEW

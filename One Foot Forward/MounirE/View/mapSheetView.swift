@@ -12,6 +12,7 @@ import MapKit
 struct DetailView: View {
     
         @Environment(\.dismiss) var dismiss
+        @Binding var showReservations : Bool
         var item: ModuleItem
         
         var body: some View {
@@ -65,8 +66,11 @@ struct DetailView: View {
                     }
                     .font(.body)
                     
-                    NavigationLink {
-                        Reservations_User()
+                    Button {
+                        dismiss()
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                showReservations = true
+                            }
                     } label: {
                         Text("Je relève le défi")
                             .padding()
@@ -84,6 +88,6 @@ struct DetailView: View {
 }
 
 #Preview {
-    DetailView(item: sampleModulesList[0])
+    DetailView(showReservations: .constant(false), item: sampleModulesList[0])
 }
 

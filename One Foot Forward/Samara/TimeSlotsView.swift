@@ -25,7 +25,7 @@ struct TimeSlotsView: View {
                 .font(.title3)
                 .fontWeight(.bold)
 
-            ScrollView {
+            
                 LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 15), count: 3), spacing: 15) {
 
     //MARK: - LOGIC FOR TIME SLOTS
@@ -53,7 +53,7 @@ struct TimeSlotsView: View {
                         .disabled(isDisabled)
                     }
                 }.padding(.bottom, 9.0)
-            }
+            
             //MARK: - BUTTON
                         Button("Je réserve"){
                             //TODO: - button logic
