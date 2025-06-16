@@ -53,18 +53,17 @@ struct TimeSlotsView: View {
                         .disabled(isDisabled)
                     }
                 }.padding(.bottom, 9.0)
-                
-    //MARK: - BUTTON
-                Button("Je réserve"){
-                    //TODO: - button logic
-                }
-                .padding()
-                .font(.headline)
-                .frame(width: 120, height: 50)
-                .background(.accent)
-                .foregroundColor(.white)
-                .cornerRadius(10)
             }
+            //MARK: - BUTTON
+                        Button("Je réserve"){
+                            //TODO: - button logic
+                        }
+                        .padding()
+                        .font(.headline)
+                        .frame(width: 120, height: 50)
+                        .background(.accent)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
         }
         .padding()
     }
