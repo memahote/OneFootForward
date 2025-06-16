@@ -26,32 +26,37 @@ struct Chat_User: View {
         Contact(imageName: "barcelone", title: "Ville de barcelone", subtitle: "Merci pour votre message, n’hésitez pas …"),
         Contact(imageName: "bike", title: "Mobiligo", subtitle: "Merci pour votre message, n’hésitez pas …"),
         Contact(imageName: "car", title: "Blablacar", subtitle: "Merci pour votre message, n’hésitez pas …"),
-        Contact(imageName: "délices", title: "Les délices de Vanessa", subtitle: "Merci pour votre message, n’hésitez pas …"),
+        Contact(imageName: "delices", title: "Les délices de Vanessa", subtitle: "Merci pour votre message, n’hésitez pas …"),
     ]
     
     //MARK: - BODY
     
     var body: some View {
         
-        HStack {
-            Text("Ma Messagerie")
-                .font(.largeTitle)
-                .fontWeight(.bold)
-                .foregroundStyle(.blackGreen)
-                .padding()
+        NavigationStack {
             
-            Spacer()
-        }
-            
-        
-        ScrollView {
-            VStack(spacing: 16) {
-                ForEach(contacts) { contact in
-                    ContactCard(contact: contact)
-                }
+            HStack {
+                Text("Ma Messagerie")
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                    .foregroundStyle(.blackGreen)
+                    .padding()
+                
+                Spacer()
             }
-            .padding()
+            
+            ScrollView {
+                VStack(spacing: 16) {
+                    ForEach(contacts) { contact in
+                        NavigationLink(destination: Chat_Detail_User()) {
+                            ContactCard(contact: contact)
+                        }
+                    }
+                }
+                .padding()
+            }
         }
+      
     }
 }
 
