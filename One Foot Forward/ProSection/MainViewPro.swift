@@ -1,15 +1,13 @@
 //
-//  ContentView.swift
+//  MainViewPro.swift
 //  One Foot Forward
 //
-//  Created by Lucie Grunenberger  on 02/06/2025.
+//  Created by Mounir Emahoten on 16/06/2025.
 //
 
 import SwiftUI
 
-// Création de la TabBar
-
-struct ContentView: View {
+struct MainViewPro: View {
     var body: some View {
         TabView {
             
@@ -35,5 +33,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    MainViewPro()
 }

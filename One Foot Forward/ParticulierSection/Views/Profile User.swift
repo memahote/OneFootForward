@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct Profile_User: View {
+    @Environment(\.dismiss) var dismiss
     
     // MARK: - Data
     let currentXP: CGFloat = 300
@@ -52,9 +53,13 @@ struct Profile_User: View {
                 Image(systemName: "paperplane.fill")
                     .font(.title)
             }
-
-            Image(systemName: "gearshape.fill")
-                .font(.title)
+            
+            Button {
+                dismiss()
+            } label: {
+                Image(systemName: "gearshape.fill")
+                    .font(.title)
+            }
         }
     }
     
@@ -100,7 +105,7 @@ struct Profile_User: View {
                 .foregroundColor(.gray)
             
         }
-       
+        
     }
     
     private var advantagesAndRewardsSection: some View {

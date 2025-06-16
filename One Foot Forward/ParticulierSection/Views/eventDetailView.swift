@@ -33,6 +33,7 @@ struct eventDetailView: View {
                 
                 HStack {
                     Spacer()
+                    //Faire une vue et lui donner en parametre les infos
                     VStack (alignment: .leading){
                         
                         

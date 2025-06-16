@@ -35,23 +35,12 @@ struct chat: View {
                         } label: {
                             ExtractedViewChat(touriste: touriste)
                         }
-                        
-                        
-                        
-                        
+        
                     }
-                    
-                    
-                    
+         
                 }
             }
-            
-            
-            
         }
-        
-        
-       
     }
 }
 

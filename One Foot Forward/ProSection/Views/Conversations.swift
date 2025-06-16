@@ -15,7 +15,7 @@ struct Conversations: View {
     var touriste: Touristes
     @State var message: String = ""
     @Environment(\.dismiss) var dismiss
-
+    
     
     
     var body: some View {
@@ -99,7 +99,7 @@ struct Conversations: View {
                 ToolbarItem(placement: .topBarLeading){
                     VStack{
                         Spacer(minLength: 40)
-
+                        
                         HStack{
                             backButton()
                             
@@ -147,12 +147,8 @@ struct Conversations: View {
                     .shadow(color: .gray.opacity(0.3), radius: 5, x: 2, y: 2)
                     
                 }
-
-                }
+                
             }
-
-            
-
         }
         
         
@@ -161,14 +157,7 @@ struct Conversations: View {
     
     
     
-    
-
-
-
-
-
-
-
+}
 
 
 
