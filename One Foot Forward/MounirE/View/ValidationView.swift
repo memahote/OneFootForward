@@ -14,9 +14,18 @@ struct ValidationView: View {
             Text("QR Code de l'événement")
                 .font(.title)
             Image(.frame)
-               
+            
             
         }
+        .navigationBarBackButtonHidden(true)
+        .toolbar{
+            ToolbarItem(placement: .topBarLeading){
+                    backButton()
+                    
+            }
+            
+        }
+        
     }
 }
 

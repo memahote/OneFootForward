@@ -8,10 +8,6 @@
 import SwiftUI
 
 
-
-
-
-
 struct PrincipalPage: View {
     
     @State private var customPickerControl:pickerOptions = pickerOptions.aVenir
@@ -22,7 +18,7 @@ struct PrincipalPage: View {
         VStack {
             BanniereRestaurant()
             CustomPickerControl(selecteOption: $customPickerControl)
-//            Spacer(minLength: 450)
+
             switch customPickerControl {
             case .aVenir:
                 ReservationAvenir()
@@ -32,8 +28,14 @@ struct PrincipalPage: View {
                 ReservationAnnulées()
                 
             }
-//            ReservationAvenir()
+
         }
+        .padding()
+        .toolbarVisibility(
+            .hidden, for: .tabBar)
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(leading: backButton())
+
 
     }
     

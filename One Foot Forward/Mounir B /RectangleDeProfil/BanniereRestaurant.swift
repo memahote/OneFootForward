@@ -9,10 +9,6 @@ import SwiftUI
 
 struct BanniereRestaurant: View {
     
-//    @State private var aVenir : pickerOptions = .aVenir
-//    @State private var passées : pickerOptions = .passées
-//    @State private var annulées : pickerOptions = .annulées
-    
     var body: some View {
         VStack  {
             ZStack {
@@ -33,12 +29,16 @@ struct BanniereRestaurant: View {
             HStack {
                 Text("Mes Réservations")
                     .font(.title)
+                    .bold()
                     .padding(.top)
                     .padding(.leading)
+                
+                Spacer()
                
 
             }
         }
+        .padding(.horizontal)
     }
     
     

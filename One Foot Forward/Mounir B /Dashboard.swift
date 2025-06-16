@@ -31,6 +31,7 @@ struct Dashboard: View {
                 VStack(alignment: .leading) {
                     Text("Dashboard")
                         .font(.title)
+                        .bold()
                         .padding(.top)
                     
                     
@@ -43,17 +44,15 @@ struct Dashboard: View {
                     NavigationLink {
                         PrincipalPage()
                     } label: {
-                        Text("Gerer Mes Réservations")
+                        Text("Gérer mes réservations")
                             .padding(.horizontal, 15)
                             .padding(.vertical, 10)
                             .foregroundColor(.black)
                             .background(Color.accent)
                             .cornerRadius(10)
                     }
-
-                  
                     .frame(maxWidth: .infinity, alignment: .center)
-                    .padding(.top, 20)
+                    .padding(20)
                     Spacer()
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)

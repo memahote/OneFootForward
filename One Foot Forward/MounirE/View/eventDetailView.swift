@@ -152,6 +152,15 @@ struct eventDetailView: View {
                 
             }
             .ignoresSafeArea()
+            .navigationBarBackButtonHidden(true)
+            .toolbar{
+                ToolbarItem(placement: .topBarLeading){
+                        backButton()
+                        
+                    
+                }
+                
+            }
             
         }
         

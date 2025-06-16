@@ -8,7 +8,7 @@
 import SwiftUI
 
 enum pickerOptions: String, CaseIterable {
-    case aVenir = "A venir"
+    case aVenir = "À venir"
     case passées = "Passées"
     case annulées = "Annulées"
     
@@ -50,6 +50,7 @@ struct CustomPickerControl: View {
         
     }
 }
+
 #Preview {
     @Previewable @State var selecteOption: pickerOptions = .aVenir
     CustomPickerControl(selecteOption: $selecteOption)

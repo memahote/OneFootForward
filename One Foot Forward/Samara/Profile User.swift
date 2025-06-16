@@ -26,17 +26,19 @@ struct Profile_User: View {
     
     // MARK: - Body
     var body: some View {
-        VStack {
-            headerView
-            Spacer()
-            avatarSection
-            rankInfo
-            progressBarSection
-            Spacer()
-            advantagesAndRewardsSection
-            
+        NavigationStack {
+            VStack {
+                headerView
+                Spacer()
+                avatarSection
+                rankInfo
+                progressBarSection
+                Spacer()
+                advantagesAndRewardsSection
+                
+            }
+            .padding()
         }
-        .padding()
     }
     
     // MARK: - View Sections
@@ -44,8 +46,15 @@ struct Profile_User: View {
     private var headerView: some View {
         HStack {
             Spacer()
-            Image(systemName: "paperplane.fill")
-            Image(.wheel)
+            NavigationLink {
+                Chat_User()
+            } label: {
+                Image(systemName: "paperplane.fill")
+                    .font(.title)
+            }
+
+            Image(systemName: "gearshape.fill")
+                .font(.title)
         }
     }
     
@@ -95,7 +104,7 @@ struct Profile_User: View {
     }
     
     private var advantagesAndRewardsSection: some View {
-        ScrollView {
+        ScrollView (showsIndicators: false){
             VStack(alignment: .leading, spacing: 12) {
                 
                 // Advantages
@@ -155,7 +164,9 @@ struct Profile_User: View {
                 
             }
             .padding(.horizontal)
+            .padding(.vertical)
         }
+        
     }
     
 }

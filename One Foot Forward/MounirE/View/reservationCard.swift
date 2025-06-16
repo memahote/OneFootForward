@@ -10,7 +10,7 @@ import SwiftUI
 struct reservationCard: View {
     var item: ModuleItem
     var color: Color
-    var pickerOptions : pickerOptionsRes
+    var pickerOptions : pickerOptions
     var onCancel: (() -> Void)? = nil
     
     var body: some View {
@@ -56,7 +56,7 @@ struct reservationCard: View {
                         HStack{
                             Image(systemName: "mappin")
                             Text(item.lieuName)
-                            if pickerOptions == .avenir {
+                            if pickerOptions == .aVenir {
                                 Button {
                                     
                                 } label: {
@@ -72,7 +72,8 @@ struct reservationCard: View {
                             
                         }
                         
-                        if pickerOptions == .avenir {
+                        if pickerOptions == .aVenir {
+                            
                             HStack{
                                 NavigationLink {
                                     ValidationView()
@@ -113,5 +114,5 @@ struct reservationCard: View {
     
 }
 #Preview {
-    reservationCard(item: sampleModulesList[0], color: .accent, pickerOptions: .avenir)
+    reservationCard(item: sampleModulesList[0], color: .accent, pickerOptions: .aVenir)
 }

@@ -8,8 +8,8 @@
 import SwiftUI
 
 enum pickerOptionsRes: String, CaseIterable {
-    case avenir = "A venir"
-    case passe = "Pasées"
+    case avenir = "À venir"
+    case passe = "Passées"
     case annuler = "Annulées"
     
     
@@ -56,14 +56,15 @@ struct CustomPickerControlRes: View {
 
 struct reservationView: View {
     
-    @State private var selecteOption: pickerOptionsRes = .avenir
+    @State private var selecteOption: pickerOptions = .aVenir
     @State private var futureEvents = sampleModulesList
     @State private var canceledEvents = cancelModuleList
     @State private var pastEvents = passedModuleList
     
     var body: some View {
         
-            VStack(alignment: .leading, spacing: 12) {
+        NavigationStack {
+            VStack(spacing: 12) {
                 
                 HStack {
                     Text("Mes Réservations")
@@ -74,12 +75,12 @@ struct reservationView: View {
                 }
                 .padding(.horizontal)
                 
-                CustomPickerControlRes(selecteOption: $selecteOption)
+                CustomPickerControl(selecteOption: $selecteOption)
                     .padding(.horizontal)
                 
                 ScrollView (showsIndicators: false){
                     
-                    if selecteOption == .avenir {
+                    if selecteOption == .aVenir {
                         ForEach(futureEvents) { item in
                             reservationCard(item: item, color: .white, pickerOptions: selecteOption){
                                 futureEvents.removeAll { $0.id == item.id }
@@ -89,13 +90,13 @@ struct reservationView: View {
                         }
                     }
                     
-                    else if selecteOption == .passe {
+                    else if selecteOption == .passées {
                         ForEach(passedModuleList) { item in
                             reservationCard(item: item, color: Color.accent.opacity(0.7), pickerOptions: selecteOption)
                         }
                     }
                     
-                    else if selecteOption == .annuler {
+                    else if selecteOption == .annulées {
                         ForEach(canceledEvents) { item in
                             reservationCard(item: item, color: Color.gray.opacity(0.7), pickerOptions: selecteOption)
                         }
@@ -103,7 +104,8 @@ struct reservationView: View {
                     
                 }
             }
-        
+        }
+            
     }
 }
 

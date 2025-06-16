@@ -8,9 +8,11 @@
 import SwiftUI
 
 struct ReservationPassées : View {
+  @Environment(\.dismiss) var dismiss
   @State  var selecteOption: pickerOptions = .passées
   @State private var afficherNotation = false
   @State private var noteTemporaire: Int = 0
+    
     
     var body: some View {
         
@@ -112,12 +114,25 @@ struct ReservationPassées : View {
                 }
                 .padding(30)
             }
-            
             .sheet(isPresented: $afficherNotation) {
                 VStack(spacing: 20) {
+                    
+                    HStack{
+                        Spacer()
+                        
+                        Button {
+                            afficherNotation = false
+                        } label: {
+                            Image(systemName: "xmark.circle.fill")
+                                .font(.title)
+                                .foregroundStyle(.red)
+                        }
+                        
+                    }
+                    
                     Text("Donner une note")
                         .font(.headline)
-
+                    
                     HStack {
                         ForEach(1...5, id: \.self) { etoile in
                             Image(systemName: etoile <= noteTemporaire ? "star.fill" : "star")
@@ -129,17 +144,21 @@ struct ReservationPassées : View {
                                 }
                         }
                     }
-
-                    Button("Fermer") {
+                    
+                    Button(action: {
                         afficherNotation = false
+                    }) {
+                        Text("Noter")
+                            .padding(.horizontal, 45)
+                            .padding(.vertical, 15)
+                            .foregroundColor(.white)
+                            .background(.accent)
+                            .cornerRadius(10)
                     }
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(Color.accent)
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
+                    .contentShape(Rectangle())
                 }
                 .padding()
+                .presentationDetents([.fraction(0.35)])
             }
             
         }
