@@ -11,10 +11,10 @@ struct RingChartView: View {
     var body: some View {
         VStack {
             ZStack {
-                RingView(percent: 0.5, thickness: 20, color: .accent)
+                RingView(percent: 0.85, thickness: 20, color: .accent)
                     .frame(width: 200, height: 200)
 
-                RingView(percent: 0.5, thickness: 15, color: .green)
+                RingView(percent: 0.75, thickness: 15, color: .green)
                     .frame(width: 160, height: 160)
 
                 RingView(percent: 0.5, thickness: 15, color: .blackGreen)
@@ -25,9 +25,9 @@ struct RingChartView: View {
             Spacer()
 
             VStack(alignment: .leading, spacing: 10) {
-                LegendView(color: .accent, title: "Déchets ramassés", value: "50/100 Kg")
+                LegendView(color: .accent, title: "Déchets ramassés", value: "85/100 Kg")
                 Divider()
-                LegendView(color: .green, title: "Nombre de réservations", value: "100/200")
+                LegendView(color: .green, title: "Nombre de réservations", value: "150/200")
                 Divider()
                 LegendView(color: .blackGreen, title: "Voyageurs totaux", value: "100/200")
             }

@@ -32,9 +32,6 @@ struct AjouterUneMission: View {
             
             VStack{
                 
-                //ScrollView{
-                
-                
                 
                 HStack{
                     Text ("Nouvelle mission")

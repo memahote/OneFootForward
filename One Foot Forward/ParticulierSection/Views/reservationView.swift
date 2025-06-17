@@ -7,53 +7,6 @@
 
 import SwiftUI
 
-enum pickerOptionsRes: String, CaseIterable {
-    case avenir = "À venir"
-    case passe = "Passées"
-    case annuler = "Annulées"
-    
-    
-}
-
-struct CustomPickerControlRes: View {
-    
-    @Binding var selecteOption: pickerOptionsRes
-    
-    
-    var body: some View {
-        HStack (spacing: 0){
-            ForEach(pickerOptionsRes.allCases, id: \.self) { option in
-                let isSelected = selecteOption == option
-                
-                Button {
-                    selecteOption = option
-                } label: {
-                    HStack {
-                        
-                        Text(option.rawValue)
-                        
-                        
-                    }
-                    .frame(maxWidth: 175)
-                    .padding(.vertical, 10)
-                    .font(.system(size: 20))
-                    .foregroundStyle(isSelected ? Color.white : Color.primary)
-                    .background(isSelected ? Color.accent : Color.clear)
-                    .clipShape(RoundedRectangle(cornerRadius: 7))
-                }
-                
-                
-                
-                
-                
-            }
-        }
-        .background(.gray.opacity(0.6))
-        .clipShape(RoundedRectangle(cornerRadius: 8))
-        
-    }
-}
-
 struct reservationView: View {
     
     @State private var selecteOption: pickerOptions = .aVenir
